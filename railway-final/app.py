@@ -60,6 +60,22 @@ def fmt_min(v):
     return "—" if pd.isna(v) else f"{v:.2f} min".replace(".00 min", " min")
 
 
+embed_view = st.query_params.get("view") == "station-finder"
+if embed_view:
+    st.markdown(
+        "<style>div[data-testid='stMainBlockContainer'],.block-container{padding-top:1rem}</style>",
+        unsafe_allow_html=True,
+    )
+    st.markdown('<div id="explorer"></div>', unsafe_allow_html=True)
+    section(
+        "FIND YOUR STATION",
+        "Find your station",
+        "Type a city or station name to explore its 2026 results and compare it with another European rail hub.",
+    )
+    render_station_explorer(df)
+    st.stop()
+
+
 logo_uri = uri(ASSETS / "ccc-logo.png")
 if logo_uri:
     brand = f'<img src="{logo_uri}" alt="Consumer Choice Center">'
@@ -85,7 +101,7 @@ st.markdown(
         <a href="#about">About</a>
         <a href="#index">Index</a>
         <a href="#reliability">Punctuality</a>
-        <a href="#explorer">Explorer</a>
+        <a href="#explorer">Find station</a>
         <a href="#method">Methodology</a>
       </div>
     </nav>
@@ -110,6 +126,7 @@ st.markdown(
         </p>
         <div class="hero-actions">
           <a class="button primary" href="#index">Explore the index →</a>
+          <a class="button secondary" href="#explorer">Find your station →</a>
           <a class="button secondary" href="#about">About the research</a>
         </div>
       </div>
@@ -329,9 +346,9 @@ st.caption("Personalized results are exploratory and do not alter the official E
 
 st.markdown('<div id="explorer"></div>', unsafe_allow_html=True)
 section(
-    "04 · STATION EXPLORER",
-    "Understand the score",
-    "Choose any station to see its headline performance and the components contributing to the overall index result.",
+    "04 · FIND YOUR STATION",
+    "Find your station",
+    "Type a city or station name to explore its 2026 results, understand its score, and compare it with another European rail hub.",
 )
 render_station_explorer(df)
 
@@ -443,7 +460,7 @@ with method_right:
             <strong>See the published 2026 methodology and rankings.</strong>
           </div>
           <a class="button primary report-link-button"
-             href="INSERT LINK HERE"
+             href="https://consumerchoicecenter.org/european-railway-station-index-2026/"
              target="_blank" rel="noopener noreferrer">
             Read the report →
           </a>

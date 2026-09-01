@@ -1,0 +1,14 @@
+.git
+.github
+.devcontainer
+.venv
+__pycache__
+*.py[cod]
+*.code-workspace
+.DS_Store
+__MACOSX
+._*
+README.md
+BRAND_IMPLEMENTATION.md
+scripts
+data/raw

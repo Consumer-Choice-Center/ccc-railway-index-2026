@@ -1,46 +1,55 @@
-# European Railway Station Index 2026 — Complete Local Starter
+# European Railway Station Index 2026
 
-This package now contains:
+Interactive Consumer Choice Center dashboard for comparing passenger convenience across 60 major European railway stations.
 
-- the **actual 2026 Excel research workbook** in `data/raw/`;
-- a real `scripts/build_2026_data.py` data-cleaning script;
-- non-empty Streamlit component modules;
-- `app.py`;
-- styles and configuration;
-- a processed-data workflow.
+## Features
 
-## First run
+- Full 2026 station rankings
+- Accent-insensitive city, country, and station search
+- Individual station metrics and score breakdowns
+- Two-station comparison with chart and accessible table
+- Punctuality, waiting-time, country, and personalized-priority analysis
+- Standalone finder embed mode: `?view=station-finder&embed=true`
+- Responsive CCC 2026 design
 
-From the project folder:
+## Local setup
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-
 python scripts/build_2026_data.py
 streamlit run app.py
 ```
 
-## Important
+The processed CSV is already included, so rebuilding it is only necessary after changing the source workbook.
 
-The raw workbook is included in this ZIP so you can work locally, but `.gitignore`
-is configured so `data/raw/` is **not uploaded to GitHub by accident**.
+## Data
 
-### Confirmed data correction
-Frankfurt Main Hbf 2025 passenger volume:
-`164.25 million`.
+- Source workbook: `data/raw/2026 European Railway Stations Index.xlsx`
+- Processed dashboard data: `data/processed/stations_2026.csv`
+- Data preparation: `scripts/build_2026_data.py`
 
-## CCC 2026 branding
-The UI is now aligned to the 2026 CCC brand guide:
-- Autumn Orange `#E95C1F`
-- Leila/Navy `#22264E`
-- Warm White `#FFF7EF`
-- Cool Mist `#E7ECF4`
-- approved tertiary chart palette
-- Montserrat/Hind typography
+The raw workbook is intentionally included and versioned in this public repository. The data preparation script applies the confirmed Frankfurt Main Hbf 2025 passenger-volume correction of `164.25 million`.
 
-See `BRAND_IMPLEMENTATION.md` for details.
+## Tests
 
-## Editorial interface update
-See `WHAT_CHANGED.md` for the exact files to replace in the previous version.
+```bash
+python -m unittest discover -s tests -v
+```
+
+The tests cover city/station matching, accent normalization, score breakdowns, comparisons, and finder-only embed mode.
+
+## Docker
+
+Build the image from the repository root:
+
+```bash
+docker build -t ccc-european-railway-index-2026 .
+```
+
+The included `docker-compose.yml` follows the hardened production deployment and expects the external Docker network `archivebox_default`.
+
+## Branding
+
+The interface follows the CCC 2026 brand system, including Autumn Orange `#E95C1F`, Leila/Navy `#22264E`, Warm White `#FFF7EF`, Cool Mist `#E7ECF4`, and Montserrat/Hind typography. See `BRAND_IMPLEMENTATION.md` for details.

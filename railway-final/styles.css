@@ -822,6 +822,132 @@ footer span {
   font-weight: 500;
 }
 
+/* Find your station */
+.station-finder-card {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.38fr) minmax(0, 0.62fr);
+  overflow: hidden;
+  margin: 0.8rem 0 1rem;
+  background: var(--white);
+  border: 1px solid var(--mist);
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(34, 38, 78, 0.08);
+}
+
+.station-finder-identity {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 220px;
+  padding: 1.6rem;
+  background: var(--navy);
+  border-top: 6px solid var(--orange);
+  color: var(--white);
+}
+
+.station-finder-location {
+  color: var(--marigold);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.station-finder-identity h3 {
+  margin: 0.65rem 0 0.8rem !important;
+  color: var(--white) !important;
+  font-size: 1.75rem !important;
+  line-height: 1.12 !important;
+}
+
+.station-finder-rank {
+  color: #dfe3f2;
+  font-family: "Hind", sans-serif;
+  font-size: 0.96rem;
+}
+
+.station-finder-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.1rem;
+  min-width: 0;
+  padding: 1.5rem;
+}
+
+.station-finder-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.station-finder-metrics > div {
+  min-width: 0;
+  padding: 0.9rem;
+  background: var(--warm);
+  border-top: 4px solid var(--orange);
+  border-radius: 12px;
+}
+
+.station-finder-metrics span,
+.station-finder-takeaways span {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: #59617f;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.station-finder-metrics strong {
+  display: block;
+  overflow-wrap: anywhere;
+  color: var(--navy);
+  font-size: 1.35rem;
+  line-height: 1.15;
+}
+
+.station-finder-takeaways {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.station-finder-takeaways > div {
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--mist);
+}
+
+.station-finder-takeaways p {
+  margin: 0;
+  color: var(--navy);
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+
+.station-finder-card-compact {
+  display: block;
+}
+
+.station-finder-card-compact .station-finder-identity {
+  min-height: 165px;
+}
+
+.station-finder-card-compact .station-finder-body {
+  padding: 1.1rem;
+}
+
+.station-finder-card-compact .station-finder-takeaways {
+  grid-template-columns: 1fr;
+}
+
+div[data-baseweb="input"]:focus-within,
+div[data-baseweb="select"]:focus-within {
+  outline: 3px solid rgba(233, 92, 31, 0.25);
+  outline-offset: 2px;
+}
+
 /* Responsive layout */
 @media (max-width: 950px) {
   .stat-grid {
@@ -856,6 +982,14 @@ footer span {
   .dark-stats {
     grid-template-columns: 1fr 1fr;
   }
+
+  .station-finder-card {
+    grid-template-columns: 1fr;
+  }
+
+  .station-finder-identity {
+    min-height: 170px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -871,6 +1005,16 @@ footer span {
   .method-accordion details p,
   .threshold-grid {
     margin-left: 1.05rem;
+  }
+
+  .station-finder-metrics,
+  .station-finder-takeaways {
+    grid-template-columns: 1fr;
+  }
+
+  .station-finder-identity,
+  .station-finder-body {
+    padding: 1.15rem;
   }
 
   .report-callout {

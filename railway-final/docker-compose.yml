@@ -1,0 +1,37 @@
+services:
+  app:
+    build:
+      context: .
+    image: ccc-european-railway-index-2026:station-finder-20260901
+    container_name: european-railway-index-2026
+    restart: unless-stopped
+    read_only: true
+    mem_limit: 1g
+    cpus: 1.5
+    pids_limit: 256
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    expose:
+      - "8501"
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+      - /home/app:size=32m,uid=10001,gid=10001,mode=0700
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8501/_stcore/health', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+    networks:
+      - archivebox_default
+
+networks:
+  archivebox_default:
+    external: true
